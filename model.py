@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 class User(db.Model):
     """ A user can receive many affirmations """
 
@@ -12,12 +11,13 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     fname = db.Column(db.String(25), nullable=False)
-    phone_num = db.Column(db.String(10), nullable=False)
+    phone_num = db.Column(db.String(15), nullable=False)
 
+    # 'user-messages' = a list of UserMessage objects
 
     def __repr__(self):
         """ Provide helpful representation when printed """
-        return f"user fname={self.fname}, user phone_num={self.phone_num}"
+        return f"<First name = {self.fname}, phone number = {self.phone_num}>"
 
 
 class Message(db.Model):
@@ -28,8 +28,10 @@ class Message(db.Model):
     message_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     message_text = db.Column(db.Text)
 
+    # 'user-messages' = a list of UserMessage objects
+
     def __repr__(self):
-        return f"message_id={self.message_id}, message_text={self.message_text}"
+        return f"<message_id = {self.message_id}, message_text = {self.message_text}>"
 
 class UserMessage(db.Model):
     """ many to many relationship between users and messages """
@@ -43,9 +45,10 @@ class UserMessage(db.Model):
     user = db.relationship('User', backref='user_messages')
     message = db.relationship('Message', backref='user_messages')
 
-    def __repr__(self):
-        return f"user_message_id = {self.user_message_id} user = {self.user}"
+    # 'user-messages' = a list of UserMessage objects
 
+    def __repr__(self):
+        return f"<user_message_id = {self.user_message_id}, user = {self.user}, message = {self.message}>"
 
 def connect_to_db(flask_app, db_uri='postgresql:///user_messages', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

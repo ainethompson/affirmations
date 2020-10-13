@@ -1,11 +1,17 @@
-from flask import Flask, render_template
+from flask import (Flask, render_template, request, flash, session, redirect)
+from model import connect_to_db
+import crud
+
+from jinja2 import StrictUndefined
 
 app = Flask(__name__)
+app.secret_key = "aine-first-project"
+app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def homepage():
-
-    return render_template('main.html')
+    """ View Homepage. """
+    return render_template('homepage.html')
 
 
 
@@ -13,5 +19,5 @@ def homepage():
 
 
 if __name__ == '__main__': 
-    pass
+    connect_to_db(app)
     app.run(debug=True, host='0.0.0.0')
