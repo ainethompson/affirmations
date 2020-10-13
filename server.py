@@ -15,7 +15,13 @@ def homepage():
 
 
 
+@app.route('/messages')
+def all_messages():
+    """ View all messages. """
 
+    messages = crud.get_messages
+
+    return render_template('all_messages.html', messages=messages)
 
 
 if __name__ == '__main__': 
