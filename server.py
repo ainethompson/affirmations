@@ -13,7 +13,7 @@ def homepage():
     """ View Homepage. """
     return render_template('homepage.html')
 
-@app.route('/subscribe')
+@app.route('/subscribe', methods=['GET'])
 def show_subscribe():
     """ Show subscription page. """
 
@@ -25,6 +25,15 @@ def process_subscribe():
 
     Save user's name and phone number to DB """
 
+    fname = request.form.get('fname')
+
+    # request.args.get(take argumetn from html templat under subscribe route and save it to a variable)
+# commit to db using crud methods
+
+
+@app.route('/success')
+def show_success():
+    return render_template('success.html')
 
 
 
@@ -35,6 +44,7 @@ def process_subscribe():
 #     messages = crud.get_messages
 
 #     return render_template('all_messages.html', messages=messages)
+
 
 
 if __name__ == '__main__': 
