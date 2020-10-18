@@ -25,25 +25,18 @@ def process_subscribe():
 
     Save user's name and phone number to DB """
 
-    fname = request.form.get('fname')
+
+
+    user_name = request.args.get('fname')
 
     # request.args.get(take argumetn from html templat under subscribe route and save it to a variable)
 # commit to db using crud methods
 
 
-@app.route('/success')
+@app.route('/success', methods=['POST'])
 def show_success():
     return render_template('success.html')
 
-
-
-# @app.route('/messages')
-# def all_messages():
-#     """ View all messages. """
-
-#     messages = crud.get_messages
-
-#     return render_template('all_messages.html', messages=messages)
 
 
 

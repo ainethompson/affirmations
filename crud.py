@@ -38,6 +38,12 @@ def create_user_message(user_id, message_id):
 
     return user_message
 
+def get_user_message(user_id):
+    """ return a message that this user hasnt seen yet """
+
+    #SELECT message_id FROM messages WHERE message_id NOT IN (SELECT message_id FROM user_messages WHERE user_id = 1);
+
+    return message
 
 if __name__== '__main__':
     from server import app

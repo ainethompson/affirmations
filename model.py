@@ -13,7 +13,7 @@ class User(db.Model):
     fname = db.Column(db.String(25), nullable=False)
     phone_num = db.Column(db.String(15), nullable=False)
 
-    messages = db.relationship('Message', backref='users', secondary='users_messages')
+    # messages = db.relationship('Message', backref='users', secondary='users_messages')
     # 'user-messages' = a list of UserMessage objects
 
     def __repr__(self):
@@ -29,7 +29,7 @@ class Message(db.Model):
     message_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     message_text = db.Column(db.Text)
 
-    users = db.relationship('User', backref='messages', secondary='users_messages')
+    # users = db.relationship('User', backref='messages', secondary='users_messages')
     # 'user-messages' = a list of UserMessage objects
 
     def __repr__(self):
@@ -44,8 +44,8 @@ class UserMessage(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     message_id = db.Column(db.Integer, db.ForeignKey('messages.message_id'))
 
-    # user = db.relationship('User', backref='users_messages')
-    # message = db.relationship('Message', backref='users_messages')
+    user = db.relationship('User', backref='users_messages')
+    message = db.relationship('Message', backref='users_messages')
 
     # 'user-messages' = a list of UserMessage objects
 
