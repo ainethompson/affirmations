@@ -18,7 +18,8 @@ def send_message():
     auth_token = os.environ.get('TWILIO_TOKEN')
     client = Client(account_sid, auth_token)
 
-    quote = choice(list(message_data.values()))
+    quote = choice(message_data)
+    # quote = choice(list(message_data.values()))
 
     message = client.messages.create(to=phone,
                             from_=twilio_number,
