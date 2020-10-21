@@ -1,4 +1,5 @@
-"""Models for affirmations app. """
+"""Models for affirmations app. 
+DB name = affirmations_db"""
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -51,6 +52,7 @@ class UserMessage(db.Model):
 
     def __repr__(self):
         return f"<user_message_id = {self.user_message_id}, user = {self.user}, message = {self.message}>"
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///users_messages', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

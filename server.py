@@ -1,4 +1,4 @@
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db
 import crud
 
@@ -32,15 +32,19 @@ def process_subscribe():
     user = crud.create_user(fname, phone_num)
     if user:
         flash("Oops! It looks like you're already subscribed with us!")
-    
+    else:
+        flash("Success!")
+
+    return redirect('/success')
     # request.args.get(take argumetn from html templat under subscribe route and save it to a variable)
 # commit to db using crud methods
 
+    # return user
 
 @app.route('/success', methods=['POST'])
 def show_success():
-    # user = request.args.get('fname')
-    return render_template('success.html')
+    user = request.args.get('fname')
+    return render_template('success.html', user=user)
 
 
 
