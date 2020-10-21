@@ -8,8 +8,8 @@ app = Flask(__name__)
 app.secret_key = "aine-first-project"
 app.jinja_env.undefined = StrictUndefined
 
-account_sid = os.environ['TWILIO_SID']
-auth_token = os.environ['TWILIO_TOKEN']
+account_sid = os.environ.get('TWILIO_SID')
+auth_token = os.environ.get('TWILIO_TOKEN')
 
 
 @app.route('/')

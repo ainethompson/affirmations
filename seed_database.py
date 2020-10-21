@@ -8,15 +8,15 @@ import crud
 import model
 import server
 
-os.system('dropdb user_messages')
-os.system('createdb user_messages')
+os.system('dropdb affirmations_db')
+os.system('createdb affirmations_db')
 
 model.connect_to_db(server.app)
 model.db.create_all()
 
 #  load message data from JSON file
-with open('data/messages.json') as m:
-    message_data = json.loads(m.read())
+with open('data/messages.json') as f:
+    message_data = json.load(f)
 
  # TO DO - get message_text from message dictionary.
 # create a message and append it to messages_in_db

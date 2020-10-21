@@ -48,7 +48,7 @@ def create_user_message(user_id, message_id):
 
 def get_user_message(user_id):
     """ return a message that this user hasnt seen yet """
-
+    pass 
     #SELECT message_id FROM messages WHERE message_id NOT IN (SELECT message_id FROM user_messages WHERE user_id = 1);
 
     # return message
