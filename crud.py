@@ -13,6 +13,15 @@ def create_user(fname, phone_num):
 
     return user
 
+def get_user_by_id(user_id):
+    """Return a user by primary key."""
+
+    return User.query.get(user_id)
+
+def get_user_by_phone(phone_num):
+    """ Return a user by phone_num"""
+    return User.query.filter(User.phone_num == phone_num).first()
+
 def create_message(message_text):
     """ Create and return message. """
 
@@ -23,10 +32,9 @@ def create_message(message_text):
 
     return message
 
-def get_messages():
-    """ Return all messages. """
-    return Message.query.all()
-
+def get_message_by_id(message_id):
+    """ Return message by id. """
+    return Message.query.get(message_id)
 
 
 def create_user_message(user_id, message_id):
