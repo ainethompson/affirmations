@@ -54,7 +54,7 @@ class UserMessage(db.Model):
         return f"<user_message_id = {self.user_message_id}, user = {self.user}, message = {self.message}>"
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///users_messages', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///affirmations_db', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

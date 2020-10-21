@@ -1,12 +1,16 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db
 import crud
-
+import os
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
 app.secret_key = "aine-first-project"
 app.jinja_env.undefined = StrictUndefined
+
+account_sid = os.environ['TWILIO_SID']
+auth_token = os.environ['TWILIO_TOKEN']
+
 
 @app.route('/')
 def homepage():
@@ -41,7 +45,7 @@ def process_subscribe():
 
     # return user
 
-@app.route('/success', methods=['POST'])
+@app.route('/success', methods=['GET'])
 def show_success():
     user = request.args.get('fname')
     return render_template('success.html', user=user)
