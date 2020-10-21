@@ -1,11 +1,14 @@
 from twilio.rest import Client
-from quotes import quotes
-import schedule
+# from messages import quotes
+# import schedule
 from random import choice
 
 phone = '+15109819837'
 twilio_number = '+15103300507'
-quote = choice(messages.quotes)
+
+
+quote = "blah blah blah"
+# choice(messages.quotes)
 
 # def send_message(message):
 account_sid = 'ACcc394fecbdc5ff50a1d61b084c41c806'
