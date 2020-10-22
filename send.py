@@ -6,7 +6,7 @@ import model
 import crud
 import schedule
 import time
-from random import choice
+from random import choice, randint
 
 # want to send message to every user in db
 
@@ -19,14 +19,15 @@ from random import choice
 
 # crud.get_all_phone_nums
 
-phone_nums = crud.get_all_phone_nums()
+# phone_nums = crud.get_all_phone_nums()
 
 with open('data/messages.json') as f:
     message_data = json.load(f)
 
-for phone_num in phone_nums:
-    phone = phone_num
-# phone = '+15109819837'
+# for phone_num in phone_nums:
+#     phone = phone_num
+
+phone = '+15109819837'
 twilio_number = '+15103300507'
 
 def send_message():
@@ -34,8 +35,17 @@ def send_message():
     auth_token = os.environ.get('TWILIO_TOKEN')
     client = Client(account_sid, auth_token)
 
-    quote = choice(message_data)
-    # quote = choice(list(message_data.values()))
+    # quote = choice(message_data)
+
+
+    i = randint(0, len(message_data))
+
+    quote = (message_data[i].values())
+
+    # for item in dictionary:
+    #     print(f"Note to self... \n
+    #     {value} \n
+    #     - key")
 
     message = client.messages.create(to=phone,
                             from_=twilio_number,
