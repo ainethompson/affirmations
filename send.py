@@ -19,7 +19,7 @@ from random import choice
 
 # crud.get_all_phone_nums
 
-phone_nums = get_all_phone_nums().all()
+phone_nums = crud.get_all_phone_nums()
 
 with open('data/messages.json') as f:
     message_data = json.load(f)

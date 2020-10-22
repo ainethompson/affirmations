@@ -24,7 +24,7 @@ def get_user_by_phone(phone_num):
 
 def get_all_phone_nums():
   
-    all_phone_nums = db.session.query(User.phone_num)
+    all_phone_nums = db.session.query(User.phone_num).all()
     return all_phone_nums
 # SELECT phone_num FROM users
 
