@@ -2,6 +2,8 @@ from twilio.rest import Client
 import json
 import os
 import model
+# from crud import get_all_phone_nums
+import crud
 import schedule
 import time
 from random import choice
@@ -15,14 +17,16 @@ from random import choice
 # for number in list of all phone_nums:
 #     phone = number
 
+# crud.get_all_phone_nums
 
-
-
+phone_nums = get_all_phone_nums().all()
 
 with open('data/messages.json') as f:
     message_data = json.load(f)
 
-phone = '+15109819837'
+for phone_num in phone_nums:
+    phone = phone_num
+# phone = '+15109819837'
 twilio_number = '+15103300507'
 
 def send_message():
