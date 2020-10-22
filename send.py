@@ -37,15 +37,11 @@ def send_message():
 
     # quote = choice(message_data)
 
-
     i = randint(0, len(message_data))
+    text = ''.join(list(message_data[i].values()))
+    author = ''.join(list(message_data[i].keys()))
 
-    quote = (message_data[i].values())
-
-    # for item in dictionary:
-    #     print(f"Note to self... \n
-    #     {value} \n
-    #     - key")
+    quote = f"Note to self ... \n{text} \n          - {author}"
 
     message = client.messages.create(to=phone,
                             from_=twilio_number,
