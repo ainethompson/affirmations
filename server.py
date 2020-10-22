@@ -32,7 +32,6 @@ def process_subscribe():
     fname = request.form.get('fname')
     phone_num = request.form.get('phone_num')
 
-    # crud.create_user(fname, phone_num)
     user = crud.create_user(fname, phone_num)
     if user:
         flash("Oops! It looks like you're already subscribed with us!")
@@ -43,7 +42,6 @@ def process_subscribe():
     # request.args.get(take argumetn from html templat under subscribe route and save it to a variable)
 # commit to db using crud methods
 
-    # return user
 
 @app.route('/success', methods=['GET'])
 def show_success():

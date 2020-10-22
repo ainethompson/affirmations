@@ -1,10 +1,22 @@
 from twilio.rest import Client
 import json
 import os
-
+import model
 import schedule
 import time
 from random import choice
+
+# want to send message to every user in db
+
+# for user in model.User:
+#     phone = User.self.phone_num
+
+
+# for number in list of all phone_nums:
+#     phone = number
+
+
+
 
 
 with open('data/messages.json') as f:
