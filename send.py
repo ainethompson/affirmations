@@ -2,6 +2,7 @@ from twilio.rest import Client
 import json
 import os
 import model
+from model import db, User, connect_to_db
 # from crud import get_all_phone_nums
 import crud
 import schedule
@@ -10,38 +11,37 @@ from random import choice, randint
 
 # want to send message to every user in db
 
-# for user in model.User:
-#     phone = User.self.phone_num
-
-
-# for number in list of all phone_nums:
-#     phone = number
+# all_phones = model.db.session.query(User.phone_num).all()
 
 # crud.get_all_phone_nums
 
-# phone_nums = crud.get_all_phone_nums()
+# all_phones = crud.get_all_phone_nums()
+
+# for phone_num in all_phones:
+#     phone_str =''.join(list(phone)) #  ('510-981-9837',) --> 510-981-9837
+#     raw_phone = phone_str.replace('-', '') #  510-981-9837 --> 5109819837
+
+#     phone = f'+1{raw_phone}' #  5109819837 --> +15109819837
+
+    # phone = '+14157864060'
 
 with open('data/messages.json') as f:
     message_data = json.load(f)
 
-# for phone_num in phone_nums:
-#     phone = phone_num
-
-phone = '+15109819837'
 twilio_number = '+15103300507'
+# phone = '+15109819837'
+# phone = '+14157864060'
 
 def send_message():
     account_sid = os.environ.get('TWILIO_SID')
     auth_token = os.environ.get('TWILIO_TOKEN')
     client = Client(account_sid, auth_token)
 
-    # quote = choice(message_data)
-
     i = randint(0, len(message_data))
     text = ''.join(list(message_data[i].values()))
     author = ''.join(list(message_data[i].keys()))
 
-    quote = f"Note to self ... \n{text} \n          - {author}"
+    quote = f"Note to self ... \n{text} \n- {author}"
 
     message = client.messages.create(to=phone,
                             from_=twilio_number,
