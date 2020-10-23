@@ -9,21 +9,22 @@ import schedule
 import time
 from random import choice, randint
 
-# want to send message to every user in db
 
-# all_phones = model.db.session.query(User.phone_num).all()
+if __name__== '__main__':
+    from server import app
+    connect_to_db(app)
 
-# crud.get_all_phone_nums
 
-# all_phones = crud.get_all_phone_nums()
+all_phones = crud.get_all_phone_nums()
 
-# for phone_num in all_phones:
-#     phone_str =''.join(list(phone)) #  ('510-981-9837',) --> 510-981-9837
-#     raw_phone = phone_str.replace('-', '') #  510-981-9837 --> 5109819837
+phone_list = []
+for phone_num in all_phones:
+    phone_str =''.join(list(phone_num)) #  ('510-981-9837',) --> 510-981-9837
+    raw_phone = phone_str.replace('-', '') #  510-981-9837 --> 5109819837
 
-#     phone = f'+1{raw_phone}' #  5109819837 --> +15109819837
-
-    # phone = '+14157864060'
+    # phone = f'+1{raw_phone}' #  5109819837 --> +15109819837
+    # phone_list.append(phone)
+    phone_list.append(f'+1{raw_phone}')
 
 with open('data/messages.json') as f:
     message_data = json.load(f)
@@ -37,6 +38,11 @@ def send_message():
     auth_token = os.environ.get('TWILIO_TOKEN')
     client = Client(account_sid, auth_token)
 
+# iterate though phone numbers list
+    for num in phone_list:
+        phone = num
+
+
     i = randint(0, len(message_data))
     text = ''.join(list(message_data[i].values()))
     author = ''.join(list(message_data[i].keys()))
@@ -49,9 +55,10 @@ def send_message():
     print(message)
 
 schedule.every().minute.do(send_message)
-# schedule.every().day.at("15:23").do(send_message)
+# schedule.every().day.at("19:39").do(send_message)
 
 while True:
         schedule.run_pending()
         time.sleep(1)
+
     

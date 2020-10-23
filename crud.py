@@ -25,10 +25,7 @@ def get_user_by_phone(phone_num):
 def get_all_phone_nums():
   
     all_phone_nums = db.session.query(User.phone_num).all()
-    # for num in all_phone_nums:
-    #     num_str = ''.join(list(num))
-    #     raw_num = num_str.strip('-')
-    #     print (raw_num)
+    
     return all_phone_nums
 # SELECT phone_num FROM users
 
