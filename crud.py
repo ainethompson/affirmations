@@ -1,6 +1,6 @@
 """ CRUD operations. """
 from model import db, User, Message, UserMessage, connect_to_db
-
+from random import randint
 #Functions
 
 def create_user(fname, phone_num):
@@ -29,10 +29,10 @@ def get_all_phone_nums():
     return all_phone_nums
 # SELECT phone_num FROM users
 
-def create_message(message_text):
+def create_message(message_author, message_text):
     """ Create and return message. """
 
-    message = Message(message_text=message_text)
+    message = Message(message_author=message_author, message_text=message_text)
 
     db.session.add(message)
     db.session.commit()
@@ -62,7 +62,7 @@ def create_user_message(user_id, message_id):
 def get_user_messages(user_id):
     """ return messages that this user has already received"""
     pass 
-    user_message_list = []
+    # user_message_list = []
 
     # for message in sent messages:
 #       

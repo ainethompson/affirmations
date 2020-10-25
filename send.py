@@ -2,8 +2,9 @@ from twilio.rest import Client
 import json
 import os
 import model
-import model
+
 import crud
+import seed_database
 import schedule
 import time
 from random import choice, randint
@@ -24,14 +25,17 @@ if __name__== '__main__':
     
 #     phone_list.append(f'+1{raw_phone}') #  5109819837 --> +15109819837
 
-with open('data/messages.json') as f:
-    message_data = json.load(f)
+# with open('data/messages.json') as f:
+#     message_data = json.load(f)
+# message_data = seed_database.messages_in_db
 
-unsent_messages = []
-for item in message_data:
-    # need to find some way to match message_id with message item from json file
-    if model.Message.sent == False:
-        unsent_messages.append(item)
+# crud.get_unsent_messages()
+
+unsent_messages = crud.get_unsent_messages()
+
+# for item in message_data:
+#     if model.Message.sent == False:
+#         unsent_messages.append(item)
 
 
 def send_message():
@@ -41,7 +45,7 @@ def send_message():
 
 
     i = randint(0, len(unsent_messages))
-    text = ''.join(listm(unsent_messages[i].values()))
+    text = ''.join(list(unsent_messages[i].values()))
     author = ''.join(list(unsent_messages[i].keys()))
 
     quote = f"Note to self ... \n{text} \n              - {author}"
@@ -69,3 +73,9 @@ while True:
         time.sleep(1)
 
     
+
+
+
+    # i = randint(0, len(unsent_messages))
+    # text = ''.join(listm(unsent_messages[i].values()))
+    # # author = ''.join(list(unsent_messages[i].keys()))

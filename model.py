@@ -28,6 +28,7 @@ class Message(db.Model):
     __tablename__ = "messages"
 
     message_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    message_author = db.Column(db.Text)
     message_text = db.Column(db.Text)
     sent = db.Column(db.Boolean, default=False, nullable=False)
     
@@ -35,7 +36,7 @@ class Message(db.Model):
     # 'user-messages' = a list of UserMessage objects
 
     def __repr__(self):
-        return f"<message_id = {self.message_id}, message_text = {self.message_text}, sent = {self.sent}>"
+        return f"<id = {self.message_id}, author = {self.message_author}, text = {self.message_text}, sent = {self.sent}>"
 
 class UserMessage(db.Model):
     """ middle table between users and messages """

@@ -19,9 +19,10 @@ with open('data/messages.json') as f:
 
 messages_in_db = []
 for message in message_data:
-    message_text = message['message_text']
-   
-    db_message = crud.create_message(message_text)
+    message_author = message['Author']
+    message_text = message['Text']
+
+    db_message = crud.create_message(message_author, message_text)
     
     messages_in_db.append(db_message)
 
@@ -33,4 +34,4 @@ user = crud.create_user(fname, phone_num)
 # for message in sent messages:
     # if user has received that message:
     # create instance of user_message
-user_message = crud.create_user_message(user, message)
+user_message = crud.create_user_message(user, db_message)
