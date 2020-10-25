@@ -17,13 +17,11 @@ def homepage():
 
     return render_template('homepage.html')
 
-
 @app.route('/subscribe', methods=['GET'])
 def show_subscribe():
     """ Show subscription page. """
 
     return render_template('subscribe.html')
-
 
 @app.route('/subscribe', methods=['POST'])
 def process_subscribe():

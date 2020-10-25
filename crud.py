@@ -43,6 +43,12 @@ def get_message_by_id(message_id):
     """ Return message by id. """
     return Message.query.get(message_id)
 
+def get_unsent_messages():
+    """ Return list of message_ids of messages that have not yet been sent out """
+    unsent_messages = Message.query.filter(Message.sent == False).all()
+
+    # SELECT message_id FROM messages WHERE sent = False
+    return unsent_messages
 
 def create_user_message(user_id, message_id):
     """ Create and return 1 message for 1 user. """
@@ -53,10 +59,14 @@ def create_user_message(user_id, message_id):
 
     return user_message
 
-def get_user_message(user_id):
-    """ return a message that this user hasnt seen yet """
+def get_user_messages(user_id):
+    """ return messages that this user has already received"""
     pass 
-    #SELECT message_id FROM messages WHERE message_id NOT IN (SELECT message_id FROM user_messages WHERE user_id = 1);
+    user_message_list = []
+
+    # for message in sent messages:
+#       
+    #SELECT message_id FROM messages WHERE message_id IN (SELECT message_id FROM user_messages WHERE user_id = 1);
 
     # return message
 

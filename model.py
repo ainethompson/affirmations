@@ -19,7 +19,7 @@ class User(db.Model):
 
     def __repr__(self):
         """ Provide helpful representation when printed """
-        return f"<First name = {self.fname}, phone number = {self.phone_num}>"
+        return f"<User_id = {self.user_id}, First name = {self.fname}, phone number = {self.phone_num}>"
 
 
 class Message(db.Model):
@@ -29,12 +29,13 @@ class Message(db.Model):
 
     message_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     message_text = db.Column(db.Text)
-
+    sent = db.Column(db.Boolean, default=False, nullable=False)
+    
     # users = db.relationship('User', backref='messages', secondary='users_messages')
     # 'user-messages' = a list of UserMessage objects
 
     def __repr__(self):
-        return f"<message_id = {self.message_id}, message_text = {self.message_text}>"
+        return f"<message_id = {self.message_id}, message_text = {self.message_text}, sent = {self.sent}>"
 
 class UserMessage(db.Model):
     """ middle table between users and messages """

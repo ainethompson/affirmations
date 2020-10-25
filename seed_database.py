@@ -25,16 +25,12 @@ for message in message_data:
     
     messages_in_db.append(db_message)
 
-# for n in range(10):
-#     fname = f'user{n}'
-#     phone_num = '000-000-0000'
 
-    fname = model.User.fname
-    # request.args.get('fname')
-    phone_num = model.User.phone_num
-    user = crud.create_user(fname, phone_num)
+fname = model.User.fname
+phone_num = model.User.phone_num
+user = crud.create_user(fname, phone_num)
 
-    # for i in range(10):
-    #     random_message = choice(messages_in_db)
-
-    user_message = crud.create_user_message(user, message)
+# for message in sent messages:
+    # if user has received that message:
+    # create instance of user_message
+user_message = crud.create_user_message(user, message)
