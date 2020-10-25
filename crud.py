@@ -20,7 +20,11 @@ def get_user_by_id(user_id):
 
 def get_user_by_phone(phone_num):
     """ Return a user by phone_num"""
-    return User.query.filter(User.phone_num == phone_num).one()
+
+    user = db.session.query(User).filter(phone_num == User.phone_num)
+    return user
+    
+    # User.query.filter(User.phone_num == phone_num).one()
 
 def get_all_phone_nums():
   
@@ -28,6 +32,13 @@ def get_all_phone_nums():
     
     return all_phone_nums
 # SELECT phone_num FROM users
+
+# def get_user_id_by_phone(phone_num):
+#     """ Return the user_id of a user given their phone_num """
+
+#     return User.query
+
+    # SELECT user_id FROM users WHERE phone_num == phone_num
 
 def create_message(message_author, message_text):
     """ Create and return message. """

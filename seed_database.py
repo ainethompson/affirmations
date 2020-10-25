@@ -34,4 +34,4 @@ user = crud.create_user(fname, phone_num)
 # for message in sent messages:
     # if user has received that message:
     # create instance of user_message
-user_message = crud.create_user_message(user, db_message)
+# user_message = crud.create_user_message(user, db_message)

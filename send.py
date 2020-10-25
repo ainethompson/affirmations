@@ -4,7 +4,7 @@ import os
 import model
 
 import crud
-import seed_database
+
 import schedule
 import time
 from random import choice, randint
@@ -45,10 +45,20 @@ def send_message():
 
 
     i = randint(0, len(unsent_messages))
-    text = ''.join(list(unsent_messages[i].values()))
-    author = ''.join(list(unsent_messages[i].keys()))
+    to_send = unsent_messages[i]
+    # text = model.Message.message_text
+    # author = model.Message.message_author
 
-    quote = f"Note to self ... \n{text} \n              - {author}"
+    text = to_send.message_text
+    author = to_send.message_author
+
+    # text = to_send['Text'].values()
+    # author = to_send['Author'].values()
+
+    # text = ''.join(list(unsent_messages[i].values()))
+    # author = ''.join(list(unsent_messages[i].keys()))
+
+    quote = f"✨ Note to self.... \n\n{text} \n\n- {author} ✨"
 
     twilio_number = '+15103300507'
     phone ='+15109819837'
@@ -61,11 +71,13 @@ def send_message():
                             body=quote)
     print(message)
 
-    crud.create_user_message(model.User.user_id, model.User.message_id)
-    # update model.User.sent value to == True
+    person = crud.get_user_by_phone(phone)
+
+    crud.create_user_message(person.user_id, to_send.message_id)
+    model.Message.sent == True
 
 
-schedule.every().minute.do(send_message)
+schedule.every(10).seconds.do(send_message)
 # schedule.every().day.at("19:39").do(send_message)
 
 while True:
